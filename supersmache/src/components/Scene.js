@@ -9,10 +9,10 @@ const Scene = () => {
                     <div className="front">
                         <div className="frontplug">
                             <div className="frontpartplug">
-                                <div className="usbport"><p>.</p></div>
-                                <div className="usbport"><p>..</p></div>
-                                <div className="usbport"><p>...</p></div>
-                                <div className="usbport"><p class="j4">....</p></div>
+                                <div className="usbport"><p className="j">.</p></div>
+                                <div className="usbport"><p className="j">..</p></div>
+                                <div className="usbport"><p className="j">...</p></div>
+                                <div className="usbport"><p className="j">....</p></div>
                                 <div className="memory"></div>
                                 <div className="memory1"></div>
                             </div>

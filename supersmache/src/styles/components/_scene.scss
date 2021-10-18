@@ -149,7 +149,7 @@
       width: 95%;
       height: 100%;
       background: #D7D7D5;
-      -webkit-box-shadow: inset 1px 0px     25px 4px #373741; 
+      -webkit-box-shadow: inset 1px 0px 25px 4px #373741; 
       box-shadow:  1px 0px 25px 4px         var(--boxColor);
       border-radius: 1px;
      
@@ -206,9 +206,12 @@
     clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
   }
   .heya{
-    width: 100%;
-    height: 100%;
+    top: 0;
+    left:20px;
     position: absolute;
     color: #fff;
   }
-  
+  .Login{
+    width: 100%;
+    height: 100%;
+  }

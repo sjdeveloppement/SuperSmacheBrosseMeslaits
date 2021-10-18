@@ -6,6 +6,7 @@ $color-1: #61dafb;
 $color-2: #f7f7f7;
 $color-3: #282c34;
 $color-4: rgb(32, 35, 42);
+$color-5: #e8bc1e;
 
 
 * {
@@ -18,7 +19,7 @@ body {
   color: $color-3;
   
 }
-.home{
+.home {
   background-color: #000;
   min-height: 100vh;
   display: flex;
@@ -27,17 +28,17 @@ body {
   font-size: 75px;
   perspective: 10em;
   perspective-origin: 50% calc(50% - 2em);
-  & .navigation{
-      z-index: 1;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    top: 20px;
-    right: 20px;
-    & a{
-        margin-right: 50px;
-    }
-    }
+  
+}
+
+.navigation{
+  font-size: 75px;
+  z-index: 1;
+position: absolute;
+display: flex;
+justify-content: space-between;
+top: 20px;
+right: 20px;
 }
 
 li {
@@ -45,12 +46,17 @@ li {
 }
 a {
   text-decoration: none;
-  color: $color-3;
+  color: $color-2;
   cursor: pointer;
+  margin: 10px;
+  margin-right: 50px;
 }
-a:visited {
-  color: $color-3;
+
+.nav-active{
+  color: $color-2;
+  
 }
+
 
 // animation destination finale
 :root {
@@ -63,4 +69,9 @@ a:visited {
     background-size: cover;
     width: 100%;
     height: 100%;
+}
+.audio{
+  position: absolute;
+  top: 200px;
+  left: 10px;
 }
