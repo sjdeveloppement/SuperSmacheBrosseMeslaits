@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const LoginForm = (props) => {
     const [UserIsGuest, setUserIsGuest] = useState(false);
@@ -12,9 +13,14 @@ const LoginForm = (props) => {
     
     
     // prevent default + schema validation of input
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-        if( pseudo.length > 100 || password.length > 100 || lastName.length > 100 || firstName.length > 100 || mail.length > 100 ||
+        const terms = document.getElementById('terms');
+        const termsError = document.querySelector('.terms.error');
+        if(!terms.checked ){
+            setError(true);
+        }
+        if(  pseudo.length > 100 || password.length > 100 || lastName.length > 100 || firstName.length > 100 || mail.length > 100 ||
              !pseudo.match(/^[A-Za-z0-9_!^?àéâèîôêûïç\s]{3,100}$/)||
              !password.match(/^[A-Za-z0-9_!^?àâéèêîôûïç\s]{3,100}$/)||
              !lastName.match(/^[A-Za-z0-9_!^?àéâèêîôûïç\s]{3,100}$/)||
@@ -25,12 +31,29 @@ const LoginForm = (props) => {
        
         // make a else to go in the account if its a log or create account if its a new user
         else{
-            setError(false);
-            setPseudo("");
-            setPassword("");
-            setName("");
-            setFirstName("");
-            setMail("");
+           await axios({
+                method: "post",
+                url: `${process.env.REACT_APP_API_URL}api/user/register`,
+                withCredentials: true,
+                data: {
+                    pseudo,
+                    password,
+                    lastName,
+                    firstName,
+                    mail,
+                }
+            }).then((res)=>{
+                window.location= '/login';
+                setError(false);
+                setPseudo("");
+                setPassword("");
+                setName("");
+                setFirstName("");
+                setMail("");
+            }).catch((err)=>{
+                console.log(err);
+            });
+            
         }
     }
     const handleSubmitLogin = (e) =>{
@@ -44,15 +67,30 @@ const LoginForm = (props) => {
        
         // make a else to go in the account if its a log or create account if its a new user
         else{
-            setError(false);
-            setPseudo("");
-            setPassword("");
+            axios({
+                method: "post",
+                url: `${process.env.REACT_APP_API_URL}api/user/login`,
+                withCredentials: true,
+                data: {
+                    pseudo,
+                    password,
+                }
+            }).then((res)=>{
+                console.log(res);
+                window.location ='/account';
+                setError(false);
+                setPseudo("");
+                setPassword("");
+            }).catch((err)=>{
+                console.log(err);
+            })
+            
         }
     }
 
     return (
 
-        <div className="form">
+        <div className="form" >
            {!UserIsGuest && <button onClick={()=> setUserIsGuest(true)} className="formSwitch">Déjà membre?</button>} 
            {UserIsGuest &&<button onClick={()=> setUserIsGuest(false)}className="formSwitch">Nouveau compte?</button>}
             {UserIsGuest ? (
@@ -81,7 +119,17 @@ const LoginForm = (props) => {
                         <br />
                         <input onChange={(e) => setPassword(e.target.value)} onClick={()=>setError(false)} type="password" name="password" placeholder="Mot de passe" style={{ border: error ? "1px solid red" : "1px solid #e8bc1e"}} value={password} />
                         <br />
+                        
                         { error && <p style={{color: "red"}}>Input invalides</p> }
+                        <div className="form-group">
+                        <input type="checkbox" id="terms" onClick={()=>setError(false)} />
+                        <label htmlFor="terms">J'accepte les <a id="cgu" href="/" target="_blank" rel="noopener noreferrer">
+                           Condition générales</a>
+                        </label>
+                        </div>
+                        
+                        <br />
+                       
                         <br />
                         <button type="submit" className="createUser">Créer mon compte</button>
 

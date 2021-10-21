@@ -396,6 +396,7 @@ a {
   background: #e8bc1e;
   border: none;
   height: 25px;
+  margin-top: 10px;
 }
 
 .loginBtn {
@@ -419,5 +420,29 @@ a {
   color: #282c34;
   font-size: 18px;
   background-color: #e8bc1e;
+  margin-top: 10px;
+}
+.createUser:hover {
+  background-color: #282c34;
+  color: #e8bc1e;
+}
+
+.formSwitch {
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  color: #282c34;
+  font-size: 18px;
+  background-color: #e8bc1e;
+}
+.formSwitch:hover {
+  background-color: #282c34;
+  color: #e8bc1e;
+}
+
+body {
+  background-image: url("../../new-challengers.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100vh;
 }
 /*# sourceMappingURL=index.css.map */
