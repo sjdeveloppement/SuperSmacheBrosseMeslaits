@@ -5,15 +5,27 @@ const bodyParser = require('body-parser');
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+
+const {checkUser, requireAuth}= require('./middleware/auth.middleware');
+
 const helmet = require('helmet'); // sécurise les entêtes http
 const path = require('path'); //accès aux  chemins des fichiers
 
 const userRoute = require('./routes/user');
 
+const postRoutes = require('./routes/post.routes');
 
-//const session = require('cookie-session'); //paramètrage des cookies
+
+const cookieParser = require('cookie-parser'); //paramètrage des cookies
+app.use(cookieParser());
 
 require('dotenv').config({path: './config/.env'});
+
+//jwt demande qe l'utilisateur soit authentifié sur toutes les routes
+app.get('*', checkUser);
+app.get('/jwtid', requireAuth, (req, res)=>{
+    res.status(200).send(res.locals.user._id)
+})
 
 //connexion app à la bdd
 const mongoose = require('mongoose');
@@ -33,6 +45,7 @@ app.use((req, res, next) => {
 });
 
 // sécuriser les cookies
+
 // const expiryDate = new Date(Date.now()+60*60*1000);
 // app.use(session({
 //   name: 'session',
@@ -52,5 +65,8 @@ app.use(helmet());
 
 //routes des users
 app.use('/api/user', userRoute);
+
+// routes des post
+app.use('/api/post', postRoutes);
 
 module.exports = app;

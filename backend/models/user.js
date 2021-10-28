@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose');
-const {isEmail}=require('validator');
+const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const uniqueValidator = require('mongoose-unique-validator');// package qui valide l'unicité de l'email
 const userSchema = new mongoose.Schema(
@@ -75,6 +75,19 @@ userSchema.pre("save", async function(next){
     this.password = await bcrypt.hash(this.password, salt);
     next();
 });
+
+// vérifications password au login et comparaison avec le password crypté// fonctionne quand on enleve le async/await mais renvoi une erreur de promesse, ne renvoie rien en etant async trouvé d'où vient l'erreur
+userSchema.statics.login = async function(pseudo, password){
+    const user = await this.findOne({ pseudo });
+    if(user){
+        const auth = await bcrypt.compare(password, user.password);
+        if(auth){
+            return user;
+        }
+        throw Error('incorrect password');
+    }
+    throw Error('incorrect pseudo');
+};
 // ajout l'argument unique validator qui empeche un utilisateur de s'inscrire plusieur fois avec le même mail
 userSchema.plugin(uniqueValidator);
 
