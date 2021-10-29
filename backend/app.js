@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 const {checkUser, requireAuth}= require('./middleware/auth.middleware');
-
+const cors = require('cors');
 const helmet = require('helmet'); // sécurise les entêtes http
 const path = require('path'); //accès aux  chemins des fichiers
 

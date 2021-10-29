@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth');
 const userCTRL = require('../controllers/user');
+const uploadCtrl = require('../controllers/upload');
+const multer = require('multer');
+const upload = multer();
 
 // auth
 router.post("/register", authController.signUp);
@@ -22,5 +25,8 @@ router.delete('/:id', userCTRL.deleteUser);
 // follow route
 router.patch('/follow/:id', userCTRL.follow);
 router.patch('/unfollow/:id', userCTRL.unfollow);
+
+//upload
+router.post('/upload', upload.single('file'), uploadCtrl.uploadProfil);
 
 module.exports = router;
