@@ -80,7 +80,7 @@ userSchema.pre("save", async function(next){
 userSchema.statics.login = async function(pseudo, password){
     const user = await this.findOne({ pseudo });
     if(user){
-        const auth = await bcrypt.compare(password, user.password);
+        const auth =  bcrypt.compare(password, user.password);
         if(auth){
             return user;
         }
