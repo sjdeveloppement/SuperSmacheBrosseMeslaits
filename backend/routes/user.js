@@ -26,7 +26,10 @@ router.delete('/:id', userCTRL.deleteUser);
 router.patch('/follow/:id', userCTRL.follow);
 router.patch('/unfollow/:id', userCTRL.unfollow);
 
-//upload
+//upload profil
 router.post('/upload', upload.single('file'), uploadCtrl.uploadProfil);
+
+// upload clip
+router.post('/clip', upload.single('file'), uploadCtrl.uploadClip);
 
 module.exports = router;
