@@ -54,7 +54,7 @@ module.exports.uploadClip =  (req, res) =>{
         return res.status(500).json({ errors }); 
     }
 
-    const fileName = req.body.pseudo + ".mp4";
+    const fileName = "Clip vidéo de"+" "+req.body.pseudo + ".mp4";
     console.log(fileName);
      pipeline(
         req.file.stream,
