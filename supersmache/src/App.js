@@ -17,10 +17,11 @@ const App = () => {
         url: `${process.env.REACT_APP_API_URL}jwtid`,
         withCredentials: true
       })
-        .then((res) => setUid(res.data))
-        .catch((err) => console.log("No token"));
+        .then((res) =>  setUid(res.data))
+        .catch((err) => console.log( err + "No token"));
     };
     fetchToken();
+    
   }, [uid]);
  
   return (

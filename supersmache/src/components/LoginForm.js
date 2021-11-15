@@ -34,7 +34,7 @@ const LoginForm = (props) => {
            await axios({
                 method: "post",
                 url: `${process.env.REACT_APP_API_URL}api/user/register`,
-                withCredentials: true,
+                 withCredentials: true,
                 data: {
                     pseudo,
                     password,
@@ -70,14 +70,14 @@ const LoginForm = (props) => {
             axios({
                 method: "post",
                 url: `${process.env.REACT_APP_API_URL}api/user/login`,
-                withCredentials: true,
+                 withCredentials: true,
                 data: {
                     pseudo,
                     password,
                 }
             }).then((res)=>{
                 console.log(res);
-                window.location ='/account';
+                //window.location ='/account';
                 setError(false);
                 setPseudo("");
                 setPassword("");
@@ -95,9 +95,11 @@ const LoginForm = (props) => {
            {UserIsGuest &&<button onClick={()=> setUserIsGuest(false)}className="formSwitch">Nouveau compte?</button>}
             {UserIsGuest ? (
                 <form onSubmit={(e)=>handleSubmitLogin(e)}>
+                    <br />
                     <label htmlFor="pseudo">Pseudo</label>
                     <br />
                     <input onClick={()=>setError(false)} onChange={(e) => setPseudo(e.target.value)} type="text" name="pseudo" id="pseudo" style={{ border: error ? "1px solid red" : "1px solid #e8bc1e"}} value={pseudo} />
+                    <br />
                     <br />
                     <label htmlFor="password">Mot de passe</label>
                     <br />
