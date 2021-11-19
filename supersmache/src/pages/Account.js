@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Navigation from "../components/Navigation";
 import { UidContext } from '../components/AppContext';
 
@@ -8,13 +8,15 @@ const Account = () => {
 
     return (
         <div className="account">
-            <Navigation />
-            <h1>Welcome</h1>
-            {uid ? (
-            <div className="log-container">
-                <h2>Modifier mon profil</h2>
-            </div>) : (window.location = '/login')}
-
+            <nav>
+                <Navigation />
+                <h1>Welcome</h1>
+                {uid ? (
+                <div className="log-container">
+                    <h2>Bienvenue machin</h2>
+                    <h3>Modifier mon profil</h3>
+                </div>) : (window.location = '/login')}
+            </nav>
         </div>
     );
 };

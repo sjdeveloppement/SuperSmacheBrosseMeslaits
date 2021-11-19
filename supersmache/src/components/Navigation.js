@@ -1,9 +1,9 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import { NavLink } from 'react-router-dom';
-import { UidContext } from './AppContext';
+import { UidContext } from '../components/AppContext';
 
 const Navigation = () => {
-    const [UserIsGuest, setUserIsGuest] = useState(false);
+    
     const uid = useContext(UidContext);
     return (
         <div className="navigation">

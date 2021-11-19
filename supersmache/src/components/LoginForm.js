@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const LoginForm = (props) => {
     const [UserIsGuest, setUserIsGuest] = useState(false);
+    
     const [error, setError] = useState(false);
     const [pseudo, setPseudo]= useState("");
     const [password, setPassword]= useState("");
@@ -16,7 +17,7 @@ const LoginForm = (props) => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         const terms = document.getElementById('terms');
-        const termsError = document.querySelector('.terms.error');
+        
         if(!terms.checked ){
             setError(true);
         }
@@ -81,6 +82,7 @@ const LoginForm = (props) => {
                 setError(false);
                 setPseudo("");
                 setPassword("");
+                
             }).catch((err)=>{
                 console.log(err);
             })
@@ -89,8 +91,9 @@ const LoginForm = (props) => {
     }
 
     return (
-
+        
         <div className="form" >
+           
            {!UserIsGuest && <button onClick={()=> setUserIsGuest(true)} className="formSwitch">Déjà membre?</button>} 
            {UserIsGuest &&<button onClick={()=> setUserIsGuest(false)}className="formSwitch">Nouveau compte?</button>}
             {UserIsGuest ? (
@@ -139,6 +142,7 @@ const LoginForm = (props) => {
                
             )}
         </div>
+        
 
 
 
