@@ -6,9 +6,12 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { getUser } from './actions/user.actions';
 
 const App = () => {
   const [uid, setUid] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchToken =  () => {
@@ -22,6 +25,8 @@ const App = () => {
     };
     fetchToken();
     
+    if(uid) dispatch(getUser(uid))
+
   }, [uid]);
  
   return (
