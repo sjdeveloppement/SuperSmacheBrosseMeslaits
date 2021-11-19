@@ -77,7 +77,7 @@ const LoginForm = (props) => {
                 }
             }).then((res)=>{
                 console.log(res);
-                //window.location ='/account';
+                window.location ='/account';
                 setError(false);
                 setPseudo("");
                 setPassword("");
