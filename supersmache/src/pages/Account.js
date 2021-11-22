@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import { UidContext } from '../components/AppContext';
 import Logout from '../components/Logout';
 import { useSelector } from 'react-redux';
+import UpdateProfil from '../components/Profil/UpdateProfil';
 
 const Account = () => {
     const uid = useContext(UidContext);
@@ -18,7 +19,7 @@ const Account = () => {
                 <div className="log-container">
                     <h2>Bienvenue {userData.pseudo}</h2>
                     <Logout />
-                    <h3>Modifier mon profil</h3>
+                    <UpdateProfil />
                 </div>) : (window.location = '/login')}
             </nav>
         </div>

@@ -25,7 +25,7 @@ const App = () => {
     };
     fetchToken();
     
-    if(uid) dispatch(getUser(uid))
+    if(uid) dispatch(getUser(uid));
 
   }, [uid]);
  
