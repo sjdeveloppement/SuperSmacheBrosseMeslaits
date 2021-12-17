@@ -16,7 +16,7 @@ const LeftNav = () => {
                         <img src={rocket}   alt="trending"/>
                     </NavLink>
                     <br />
-                    <NavLink to='/profil'  activeClassName="active-left-nav">
+                    <NavLink to='/account'  activeClassName="active-left-nav">
                         <img src={user}   alt="profil"/>
                     </NavLink>
                 </div>

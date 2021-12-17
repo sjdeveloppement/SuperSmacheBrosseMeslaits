@@ -8,6 +8,7 @@ import UpdateProfil from '../components/Profil/UpdateProfil';
 const Account = () => {
     const uid = useContext(UidContext);
     const userData = useSelector((state) => state.userReducer);
+    
 
     return (
         <div className="account">
